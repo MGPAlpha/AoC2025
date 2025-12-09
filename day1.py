@@ -11,8 +11,15 @@ for turn in input:
     direction = 1 if turn[0] == "R" else -1
     diff = int(turn[1:])
     diff = diff * direction
-    dial = (dial + diff) % 100
-    if dial == 0:
-        score = score + 1
+    old_dial = dial
+    dial = dial + diff
+    print("New Dial:", dial)
+    if dial >= 100:
+        score = score + dial // 100
+    elif dial <= 0:
+        score = score + (-dial // 100) + (1 if old_dial != 0 else 0) 
+    dial = dial % 100
+    print("Dial:", dial)
+    print("Score:", score)
     
 print("Final Score:", score)
