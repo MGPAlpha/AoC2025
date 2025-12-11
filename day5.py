@@ -54,7 +54,7 @@ for range_str in fresh_ranges:
     new_range = tuple(new_range)
 
     insert_new_range(searchable_range, new_range)
-    
+
 num_fresh = 0
 
 for id in ids:
@@ -63,3 +63,11 @@ for id in ids:
     if search[1]: num_fresh += 1
 
 print(num_fresh)
+
+total_possible_fresh = 0
+
+for r in searchable_range:
+    total_possible_fresh += r[1] - r[0]
+
+
+print(total_possible_fresh)
