@@ -22,18 +22,28 @@ with open("day4input.txt", "r") as file:
 width = len(input[0])
 height = len(input)
 
-adjacency_grid = [[0 for _ in range(width)] for __ in range(height)] # Build blank grid of 0's
+grid = [[input[j][i] for i in range(width)] for j in range(height)]
 
-for y in range(height):
-    for x in range(width):
-        if sample_grid_location(input,x,y):
-            apply_adjacency_kernel(adjacency_grid,x,y,width,height)
+total_removed_rolls = 0
+more_rolls_removable = True
 
-total_accessible_rolls = 0
+while more_rolls_removable:
 
-for y in range(height):
-    for x in range(width):
-        if sample_grid_location(input,x,y) and adjacency_grid[y][x] < 4:
-            total_accessible_rolls += 1
+    more_rolls_removable = False
+    adjacency_grid = [[0 for _ in range(width)] for __ in range(height)] # Build blank grid of 0's
 
-print(total_accessible_rolls)
+    for y in range(height):
+        for x in range(width):
+            if sample_grid_location(grid,x,y):
+                apply_adjacency_kernel(adjacency_grid,x,y,width,height)
+
+
+    for y in range(height):
+        for x in range(width):
+            if sample_grid_location(grid,x,y) and adjacency_grid[y][x] < 4:
+                grid[y][x] = "."
+                total_removed_rolls += 1
+                more_rolls_removable = True
+
+
+print(total_removed_rolls)
