@@ -19,6 +19,6 @@ with open("day3input.txt", "r") as file:
 total = 0
 
 for bank in input:
-    total += best_in_bank(bank, 2)
+    total += best_in_bank(bank, 12)
 
 print(total)
